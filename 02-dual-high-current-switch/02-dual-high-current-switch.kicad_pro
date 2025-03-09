@@ -458,7 +458,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "02-PWM_switch.kicad_pro",
+    "filename": "02-dual-high-current-switch.kicad_pro",
     "version": 1
   },
   "net_settings": {

@@ -1,12 +1,12 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,8.0.8*%
-%TF.CreationDate,2025-03-09T17:21:17+01:00*%
-%TF.ProjectId,02-PWM_switch,30322d50-574d-45f7-9377-697463682e6b,rev?*%
+%TF.CreationDate,2025-03-09T17:27:28+01:00*%
+%TF.ProjectId,02-dual-high-current-switch,30322d64-7561-46c2-9d68-6967682d6375,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Copper,L1,Top*%
 %TF.FilePolarity,Positive*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 8.0.8) date 2025-03-09 17:21:17*
+G04 Created by KiCad (PCBNEW 8.0.8) date 2025-03-09 17:27:28*
 %MOMM*%
 %LPD*%
 G01*
@@ -31,6 +31,24 @@ G04 APERTURE LIST*
 %TD*%
 G04 APERTURE END LIST*
 D10*
+%TO.P,J4,1,Pin_1*%
+%TO.N,Net-(D3-A)*%
+X194400000Y-132700000D03*
+D11*
+%TO.P,J4,2,Pin_2*%
+%TO.N,+24V*%
+X199400000Y-132700000D03*
+%TD*%
+D10*
+%TO.P,J1,1,Pin_1*%
+%TO.N,GND*%
+X206800000Y-132700000D03*
+D11*
+%TO.P,J1,2,Pin_2*%
+%TO.N,+24V*%
+X211800000Y-132700000D03*
+%TD*%
+D10*
 %TO.P,J3,1,Pin_1*%
 %TO.N,Net-(D2-A)*%
 X182000000Y-132700000D03*
@@ -50,24 +68,6 @@ X171897500Y-134700000D03*
 %TO.P,J2,3,Pin_3*%
 %TO.N,Net-(J2-Pin_3)*%
 X175397500Y-134700000D03*
-%TD*%
-D10*
-%TO.P,J4,1,Pin_1*%
-%TO.N,Net-(D3-A)*%
-X194400000Y-132700000D03*
-D11*
-%TO.P,J4,2,Pin_2*%
-%TO.N,+24V*%
-X199400000Y-132700000D03*
-%TD*%
-D10*
-%TO.P,J1,1,Pin_1*%
-%TO.N,GND*%
-X206800000Y-132700000D03*
-D11*
-%TO.P,J1,2,Pin_2*%
-%TO.N,+24V*%
-X211800000Y-132700000D03*
 %TD*%
 D14*
 %TO.P,H4,1,1*%
