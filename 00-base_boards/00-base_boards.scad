@@ -2,18 +2,19 @@
 // Board size in inches
 // Should be integers
 // At least 3x3
-x = 5;
-y = 5;
+x = 19;
+y = 12;
 
 // Mount style
 // 0: none
 // 1: exes on each corner
-// 2: slots along the edges
-mountstyle=2;
+// 2: Horizontal and vertical slots across the entire surface
+// 3: As above but only on 2 rows along each edge
+mountstyle = 3;
 
 ///////////////////////////////////
 
-$fn=100;
+$fn=20;
 in = 25.4;
 dr = 2.5;   // Drill hole size
 mr = 3.2;   // Mount hole size
@@ -29,8 +30,21 @@ module ex() {
         }
 }
 
-difference() {
-    square([x*in,y*in]);        // The board itself
+module slot(x,y) {
+    hull() {
+        translate([-x/2,-y/2,0]) circle(mr/2);
+        translate([x/2,y/2,0]) circle(mr/2);
+    }
+}
+
+difference() {     
+    hull() {        // The board itself
+        translate([     0.5*mr,     0.5*mr,0]) circle(mr/2);
+        translate([in*x-0.5*mr,     0.5*mr,0]) circle(mr/2);
+        translate([     0.5*mr,in*y-0.5*mr,0]) circle(mr/2);
+        translate([in*x-0.5*mr,in*y-0.5*mr,0]) circle(mr/2);
+    }
+    
     for(xc = [0.5 : 1 : x]) {   // Pegboard holes
         for(yc = [0.5 : 1 : y]) {
             translate([xc * in, yc*in,0]) circle(dr/2);
@@ -44,21 +58,19 @@ difference() {
         translate([(x-2)*in, (y-2)*in, 0]) ex();
     }
     if (mountstyle == 2) {
-        for(xc = [1 : 1 : x-1]) {   // Horizontal slots
-            z = xc % 2;
-            for(yc = [0.5+z : 2 : y-1]) {
-                hull() {
-                    translate([in*(xc-0.5),in*(yc+0.5),0]) circle(mr/2);
-                    translate([in*(xc+0.5),in*(yc+0.5),0]) circle(mr/2);
-                }
+        for(xc = [1 : 1 : x-1]) {
+            for(yc = [1 : 1 : y-1]) {
+                if ((xc + yc) % 2 == 0) translate([in*xc,in*yc,0]) slot(in,0);
+                else    translate([in*xc,in*yc,0]) slot(0,in);
             }
         }
-        for(xc = [1 : 1 : x-1]) {   // Vertical slots
-            z = 1-(xc % 2);
-            for(yc = [0.5+z : 2 : y-1]) {
-                hull() {
-                    translate([in*(xc),in*(yc+1),0]) circle(mr/2);
-                    translate([in*(xc),in*(yc),0]) circle(mr/2);
+    }
+        if (mountstyle == 3) {
+        for(xc = [1 : 1 : x-1]) {
+            for(yc = [1 : 1 : y-1]) {
+                if (min(xc, yc) < 3 || xc > x-3 || yc > y-3) {
+                    if ((xc + yc) % 2 == 0) translate([in*xc,in*yc,0]) slot(in,0);
+                    else    translate([in*xc,in*yc,0]) slot(0,in);
                 }
             }
         }
